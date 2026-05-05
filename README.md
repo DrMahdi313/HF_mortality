@@ -26,6 +26,7 @@ can achieve comparable or superior predictive performance relative to models tra
 ## Project Structure
 
 
+```
 heart-failure-ml/
 │
 ├── data/
@@ -45,7 +46,7 @@ heart-failure-ml/
 ├── README.md
 ├── requirements.txt
 ├── LICENSE
-
+```
 
 ---
 
@@ -76,32 +77,42 @@ heart-failure-ml/
 ```bash
 git clone https://github.com/YOUR_USERNAME/heart-failure-ml.git
 cd heart-failure-ml
-2. Install dependencies
+```
+### 2. Install dependencies
+```bash
 pip install -r requirements.txt
-3. Add dataset
+```
+### 3. Add dataset
 
 Place the dataset file in:
-
+```bash
 data/raw/heart_failure_clinical_records_dataset.csv
-4. Run experiments
+```
+### 4. Run experiments
 
 Full feature set:
-
+```bash
 python -m experiments.run_full_features
+```
 
 Top-2 features:
-
+```bash
 python -m experiments.run_top2_features
+```
 5. Generate report
+```bash
 python -m experiments.generate_report
-Results
+```
+### Results
 
 Results are saved in:
-
+```
 results/
-metrics/ → aggregated model performance
-figures/ → ROC & PR curves, feature importance
-reports/ → summary tables
+```
+```metrics/``` → aggregated model performance
+```figures/``` → ROC & PR curves, feature importance
+```reports/``` → summary tables
+
 Figures
 ROC Curve
 
@@ -113,32 +124,25 @@ Reproducibility
 
 This project ensures reproducibility through:
 
-Fixed random seeds
-Stratified splits
-Multiple runs with aggregation
-Modular pipeline design
-Testing
+* Fixed random seeds
+* Stratified splits
+* Multiple runs with aggregation
+* Modular pipeline design
+* Testing
 
 Run basic tests:
-
+```
 pytest
+```
 Notebook
 
 Exploratory analysis available in:
-
+```
 notebooks/exploration.ipynb
+```
 License
 
 This project is licensed under the MIT License.
 
 
 ---
-
-# 💣 Final sanity check (don’t skip)
-
-After updating README:
-
-1. Run experiments  
-2. Confirm images exist:
-
-results/figures/
