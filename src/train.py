@@ -18,7 +18,12 @@ def run_experiment(df, models, n_runs=100):
             results[name].append(metrics)
 
             # store LAST run for plotting
-            last_run_outputs[name] = (y_test, y_prob, model)
+            last_run_outputs[name] = {
+                "model": model,
+                "X_test": X_test,
+                "y_test": y_test,
+                "y_prob": y_prob
+                }
 
     return results, last_run_outputs
 

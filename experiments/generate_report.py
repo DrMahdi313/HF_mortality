@@ -1,7 +1,7 @@
 from src.reporting import generate_metrics_table
 import json
 
-with open("results/full_features.json") as f:
+with open("results/metrics/full_features.json") as f:
     full = json.load(f)
 
 with open("results/top2_features.json") as f:
@@ -12,4 +12,4 @@ combined = {
     "top2_features": top2
 }
 
-generate_metrics_table(combined, "results/reports/summary.csv")
+generate_metrics_table(combined, "results/summary.csv")
