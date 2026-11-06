@@ -18,9 +18,16 @@ def evaluate(y_true, y_pred, y_prob):
 
 def aggregate_results(results):
     aggregated = {}
+
     for model_name, runs in results.items():
-        aggregated[model_name] = {
-            metric: np.mean([run[metric] for run in runs])
-            for metric in runs[0]
-        }
+        aggregated[model_name] = {}
+
+        for metric in runs[0]:
+            values = [run[metric] for run in runs]
+
+            aggregated[model_name][metric] = {
+                "mean": float(np.mean(values)),
+                "std": float(np.std(values, ddof=1))
+            }
+
     return aggregated

@@ -3,7 +3,7 @@ from src.models import get_models
 from src.train import run_experiment
 from src.evaluation import aggregate_results
 from src.utils import save_json
-from src.config import DATA_PATH, N_RUNS, TOP_FEATURES, TARGET
+from src.config import DATA_PATH, TOP_FEATURES, TARGET
 
 df = load_data(DATA_PATH)
 
@@ -11,7 +11,7 @@ df_small = df[TOP_FEATURES + [TARGET]]
 
 models = get_models()
 
-results, _ = run_experiment(df_small, models, n_runs=N_RUNS)
+results, _ = run_experiment(df_small, models)
 aggregated = aggregate_results(results)
 
 print(aggregated)
