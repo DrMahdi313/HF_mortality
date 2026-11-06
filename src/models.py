@@ -12,7 +12,11 @@ def get_models():
         "gradient_boosting": GradientBoostingClassifier(random_state=42),
         "svm_rbf": Pipeline([
             ('scaler', StandardScaler()),
-            ('classifier', SVC(kernel="rbf", probability=True))
+            ('classifier', SVC(
+                kernel="rbf",
+                probability=True,
+                random_state=42
+                ))
         ]),
         "xgboost": XGBClassifier(
             n_estimators=200,

@@ -75,3 +75,38 @@ def test_all_models_are_created():
     }
 
     assert set(models.keys()) == expected
+
+import pandas as pd
+from sklearn.dummy import DummyClassifier
+from src.train import run_experiment
+
+
+def test_run_experiment_excludes_target_and_time():
+    df = pd.DataFrame({
+        "age": range(40),
+        "feature": [i % 3 for i in range(40)],
+        "time": [1000 + i for i in range(40)],
+        "DEATH_EVENT": [i % 2 for i in range(40)]
+    })
+
+    models = {
+        "dummy": DummyClassifier(strategy="prior")
+    }
+
+    results, outputs = run_experiment(
+        df,
+        models,
+        n_splits=5,
+        n_repeats=2
+    )
+
+    output = outputs["dummy"]
+
+    assert "DEATH_EVENT" not in output["X"].columns
+    assert "time" not in output["X"].columns
+    assert list(output["X"].columns) == ["age", "feature"]
+
+    assert len(results["dummy"]) == 10
+    assert len(output["y_true"]) == len(df)
+    assert len(output["y_prob"]) == len(df)
+    assert len(output["y_pred"]) == len(df)

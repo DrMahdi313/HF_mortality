@@ -11,14 +11,16 @@ from sklearn.model_selection import RepeatedStratifiedKFold
 
 
 def run_experiment(
-        df,
-        models,
-        columns=[TARGET],
-        n_splits=N_SPLITS,
-        n_repeats=N_REPEATS
-        ):
-    
-    X = df.drop(columns=columns)
+    df,
+    models,
+    n_splits=N_SPLITS,
+    n_repeats=N_REPEATS
+    ):
+
+    if 'time' in df.columns:
+        X = df.drop(columns=[TARGET, "time"], errors="ignore")
+    else:
+        X = df.drop(columns=[TARGET], errors='ignore')
     y = df[TARGET]
 
     cv = RepeatedStratifiedKFold(

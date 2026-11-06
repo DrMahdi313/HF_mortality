@@ -9,7 +9,7 @@ from src.visualization import (
     plot_pr_curve, 
     plot_feature_importance
 )
-from src.config import DATA_PATH, TARGET
+from src.config import DATA_PATH
 from src.interpretation import compute_shap
 
 import matplotlib.pyplot as plt
@@ -19,7 +19,7 @@ import os
 df = load_data(DATA_PATH)
 models = get_models()
 
-results, outputs = run_experiment(df, models,columns=[TARGET + 'time'])
+results, outputs = run_experiment(df, models)
 
 aggregated = aggregate_results(results)
 
